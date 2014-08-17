@@ -17,6 +17,7 @@ Atuamente a biblioteca <a href="https://github.com/adrianocaldeira/clicksign-for
 	- [Enviando um arquivo](#utilizacao-enviando-arquivo)
 	- [Criando um lista de assinatura](#utilizacao-criando-lista)
 	- [Criando um Hook](#utilizacao-criando-hook)
+	- [Enviando um arquivo e criando uma lista em uma única chamada](#utilizacao-enviando-arquivo-lista-unica-chamada)	
 
 # <a name="instacao"></a>Instalação
 
@@ -104,6 +105,21 @@ var hook = clicksign.CreateHook(document, "https://www.linkedin.com/in/adrianoca
 Console.Write(hook.Id);
 ```
 
+Console.Write(clicksign.Document.Key);
+```
+
+<a name="utilizacao-enviando-arquivo-lista-unica-chamada"></a>**Enviando um arquivo e criando uma lista em uma única chamada**
+
+```csharp
+var clicksign = new Clicksign();
+var filePath = "c:\\doc.pdf";
+
+var document = clicksign.Upload(filePath)
+	.Signatories(new Signatory { Email = "adriano.caldeira@gmail.com", Action = SignatoryAction.Sign })
+	.Document;
+	
+Console.Write(clicksign.Document.Key);	
+```
 
 
 
