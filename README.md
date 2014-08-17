@@ -21,7 +21,7 @@ Atualmente a biblioteca <a href="https://github.com/adrianocaldeira/clicksign-fo
 
 # <a name="instacao"></a>Instalação
 
-Para instalar, execute o seguinte comando no <a href="http://docs.nuget.org/docs/start-here/using-the-package-manager-console" target="_blank">Package Manager Console</a>.
+Para instalar, execute o seguinte comando no <a href="http://docs.nuget.org/docs/start-here/using-the-package-manager-console#Installing_a_Package" target="_blank">Package Manager Console</a>.
 
 <img src="https://raw.githubusercontent.com/adrianocaldeira/clicksign-for-dotnet/master/nuget.png"/>
 
