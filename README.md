@@ -17,7 +17,8 @@ Atualmente a biblioteca <a href="https://github.com/adrianocaldeira/clicksign-fo
 	- [Enviando um arquivo](#utilizacao-enviando-arquivo)
 	- [Criando uma lista de assinatura](#utilizacao-criando-lista)
 	- [Criando um Hook](#utilizacao-criando-hook)
-	- [Enviando um arquivo e criando uma lista de assinatura em uma única chamada](#utilizacao-enviando-arquivo-lista-unica-chamada)	
+	- [Enviando um arquivo e criando uma lista de assinatura em uma única chamada](#utilizacao-enviando-arquivo-lista-unica-chamada)
+- [Release Notes](#release-notes)
 
 # <a name="instacao"></a>Instalação
 
@@ -118,6 +119,9 @@ var document = clicksign.Upload(filePath)
 Console.Write(clicksign.Document.Key);	
 ```
 
+# <a name="release-notes"></a>Release Notes
 
+- [Versão 1.0.0]
+	Primeira versão lançada no NuGet.
 
 
