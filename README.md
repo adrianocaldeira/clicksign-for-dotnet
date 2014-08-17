@@ -32,3 +32,17 @@ No arquivo de configuração do seu projeto adicione as linhas abaixo:
 ```
 
 # <a name="utilizacao"></a>Utilização
+
+**Enviando um arquivo**
+
+```csharp
+var clicksign = new Clicksign();
+
+clicksign.Upload(file);
+
+Console.Log(clicksign.Document.Key);
+```
+
+
+
+
