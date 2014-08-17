@@ -122,6 +122,6 @@ Console.Write(clicksign.Document.Key);
 # <a name="release-notes"></a>Release Notes
 
 - [Versão 1.0.0]
-	Primeira versão lançada no NuGet.
+	- Primeira versão lançada no NuGet.
 
 
