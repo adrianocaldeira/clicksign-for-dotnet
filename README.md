@@ -38,9 +38,20 @@ No arquivo de configuração do seu projeto adicione as linhas abaixo:
 ```csharp
 var clicksign = new Clicksign();
 
-clicksign.Upload(file);
+//Envio através do caminho do arquivo
+var filePath = "c:\\doc.pdf";
 
-Console.Log(clicksign.Document.Key);
+clicksign.Upload(filePath);
+
+Console.Write(clicksign.Document.Key);
+
+//Envio através dos bytes de um arquivo
+var fileBytes = File.ReadAllBytes(filePath);
+var fileName = Path.GetFileName(filePath);
+
+clicksign.Upload(fileBytes, fileName);
+
+Console.Write(clicksign.Document.Key);
 ```
 
 
