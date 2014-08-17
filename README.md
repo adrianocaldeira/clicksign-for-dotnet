@@ -12,6 +12,7 @@ Atuamente a biblioteca <a href="https://github.com/adrianocaldeira/clicksign-for
 
 - [Instalação](#instacao)
 - [Configuração](#configuracao)
+-- [Recuperando lista de documentos]
 - [Utilização](#utilizacao)
 
 # <a name="instacao"></a>Instalação
