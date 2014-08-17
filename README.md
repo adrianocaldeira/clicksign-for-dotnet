@@ -105,9 +105,6 @@ var hook = clicksign.CreateHook(document, "https://www.linkedin.com/in/adrianoca
 Console.Write(hook.Id);
 ```
 
-Console.Write(clicksign.Document.Key);
-```
-
 <a name="utilizacao-enviando-arquivo-lista-unica-chamada"></a>**Enviando um arquivo e criando uma lista em uma única chamada**
 
 ```csharp
