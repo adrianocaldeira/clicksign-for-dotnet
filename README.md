@@ -4,7 +4,7 @@ Biblioteca em .Net para consumo do serviços da Clicksign.
 
 A Clicksign é uma solução online para enviar, guardar e assinar documentos, com validade jurídica. Foi criada para facilitar, reduzir custo e aumentar a segurança e compliance do processo de assinatura e workflow de documentos.
 
-Documentação da API pode está disponível em <a href="https://github.com/clicksign/rest-api-v2" target="_blank">https://github.com/clicksign/rest-api-v2</a>.
+Documentação da API está disponível em <a href="https://github.com/clicksign/rest-api-v2" target="_blank">https://github.com/clicksign/rest-api-v2</a>.
 
 Atualmente a biblioteca <a href="https://github.com/adrianocaldeira/clicksign-for-dotnet">Clicksign for .Net</a> está em acordo com a versão mais recente da Clicksign.
 
@@ -15,9 +15,9 @@ Atualmente a biblioteca <a href="https://github.com/adrianocaldeira/clicksign-fo
 - [Utilização](#utilizacao)
 	- [Recuperando lista de documentos](#utilizacao-lista-documento)
 	- [Enviando um arquivo](#utilizacao-enviando-arquivo)
-	- [Criando um lista de assinatura](#utilizacao-criando-lista)
+	- [Criando uma lista de assinatura](#utilizacao-criando-lista)
 	- [Criando um Hook](#utilizacao-criando-hook)
-	- [Enviando um arquivo e criando uma lista em uma única chamada](#utilizacao-enviando-arquivo-lista-unica-chamada)	
+	- [Enviando um arquivo e criando uma lista de assinatura em uma única chamada](#utilizacao-enviando-arquivo-lista-unica-chamada)	
 
 # <a name="instacao"></a>Instalação
 
@@ -72,7 +72,7 @@ clicksign.Upload(fileBytes, fileName);
 Console.Write(clicksign.Document.Key);
 ```
 
-<a name="utilizacao-criando-lista"></a>**Criando um lista de assinatura**
+<a name="utilizacao-criando-lista"></a>**Criando uma lista de assinatura**
 
 Conforme a documentação http://clicksign.github.io/rest-api-v2/#criacao-de-lista-de-assinatura, é possível criar uma lista de assinatura e enviá-la a outras pessoas em uma única ação. Para isso, é necessário que estejam presentes os campos que especificam o documento, os signatários, e a mensagem.
 
@@ -105,7 +105,7 @@ var hook = clicksign.CreateHook(document, "https://www.linkedin.com/in/adrianoca
 Console.Write(hook.Id);
 ```
 
-<a name="utilizacao-enviando-arquivo-lista-unica-chamada"></a>**Enviando um arquivo e criando uma lista em uma única chamada**
+<a name="utilizacao-enviando-arquivo-lista-unica-chamada"></a>**Enviando um arquivo e criando uma lista de assinatura em uma única chamada**
 
 ```csharp
 var clicksign = new Clicksign();
