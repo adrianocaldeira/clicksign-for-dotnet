@@ -54,6 +54,18 @@ clicksign.Upload(fileBytes, fileName);
 Console.Write(clicksign.Document.Key);
 ```
 
+**Criando um lista de assinatura**
+
+```csharp
+var clicksign = new Clicksign();
+var filePath = "c:\\doc.pdf";
+
+clicksign.Signatories(Document = new Document { Key = "CHAVE DO ARQUIVO QUE FOI ENVIADO" }, new Signatory { Action = Sign, Email = "adriano.caldeira@gmail.com" });
+
+Console.Write(clicksign.Document.Key);
+```
+
+
 
 
 
