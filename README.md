@@ -33,7 +33,20 @@ No arquivo de configuração do seu projeto adicione as linhas abaixo:
 
 # <a name="utilizacao"></a>Utilização
 
+**Recuperando lista de documentos**
+
+Conforme a documentação http://clicksign.github.io/rest-api-v2/#listagem-de-documentos, é possível obter uma listagem de todos os documentos da conta além de informações extras pertinentes ao andamento da lista de assinatura. A listagem retornarár todos os documentos na conta, sem a necessidade de parâmetros de paginação ou busca.
+
+```csharp
+var clicksign = new Clicksign();
+var list = clicksign.List();
+
+Console.Write(list.Count);
+```
+
 **Enviando um arquivo**
+
+Conforme a documentação http://clicksign.github.io/rest-api-v2/#listagem-de-documentos, o processo de envio de um documento para a Clicksign contempla a criação de um arquivo de log contendo informações de upload, usuário, etc, anexado a uma cópia do documento "carimbada" com um número de série. Ao final do processo haverá 2 arquivos na Clicksign: documento original e arquivo de log. Enquanto o arquivo é processado a requisição não fica bloqueada. O status do documento será working enquanto o processo ocorre. Após concluído, o status será open.
 
 ```csharp
 var clicksign = new Clicksign();
@@ -56,13 +69,35 @@ Console.Write(clicksign.Document.Key);
 
 **Criando um lista de assinatura**
 
+Conforme a documentação http://clicksign.github.io/rest-api-v2/#criacao-de-lista-de-assinatura, é possível criar uma lista de assinatura e enviá-la a outras pessoas em uma única ação. Para isso, é necessário que estejam presentes os campos que especificam o documento, os signatários, e a mensagem.
+
 ```csharp
 var clicksign = new Clicksign();
-var filePath = "c:\\doc.pdf";
+var document = new Document { Key = "CHAVE DO ARQUIVO QUE FOI ENVIADO" };
 
-clicksign.Signatories(Document = new Document { Key = "CHAVE DO ARQUIVO QUE FOI ENVIADO" }, new Signatory { Action = Sign, Email = "adriano.caldeira@gmail.com" });
+//enviando apenas um signatário
+clicksign.Signatories(document, new Signatory { Action = Sign, Email = "adriano.caldeira@gmail.com" });
+
+//enviando mais de um signatário
+clicksign.Signatories(document, new List<Signatory> {
+	new Signatory { Action = Sign, Email = "adriano.caldeira@gmail.com" },
+	new Signatory { Action = Sign, Email = "fkvillani@hotmail,com" }
+});
 
 Console.Write(clicksign.Document.Key);
+```
+
+**Criando um Hook**
+
+Conforme a documentação http://clicksign.github.io/rest-api-v2/#hooks, é possível que a Clicksign notifique outras aplições à respeito da alteração de estado de um determinado documento.
+
+```csharp
+var clicksign = new Clicksign();
+var document = new Document { Key = "CHAVE DO ARQUIVO QUE FOI ENVIADO" };
+
+var hook = clicksign.CreateHook(document, "https://www.facebook.com/adrianohscaldeira"});
+
+Console.Write(hook.Id);
 ```
 
 
