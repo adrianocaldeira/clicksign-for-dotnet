@@ -92,7 +92,7 @@ namespace Clicksign
 
             request.AddParameter("access_token", Token);
             request.AddHeader("Content-Type", "multipart/mixed; boundary=frontier");
-            request.AddHeader("Accept", "application/vnd.clicksign.v1; application/json");
+            request.AddHeader("Accept", "application/json");
             request.AddFile("document[archive][original]", file, fileName);
 
             var response = client.Execute<Result>(request).Data;
@@ -162,7 +162,7 @@ namespace Clicksign
             var client = new RestClient(Host);
             var request = new RestRequest(string.Format("documents/{0}/list", document.Key), Method.POST);
 
-            request.AddHeader("Accept", "application/vnd.clicksign.v1;application/json");
+            request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
             request.AddParameter("access_token", Token);
 
@@ -189,7 +189,7 @@ namespace Clicksign
             var request = new RestRequest("documents", Method.GET);
 
             request.AddParameter("access_token", Token);
-            request.AddHeader("Accept", "application/vnd.clicksign.v1; application/json");
+            request.AddHeader("Accept", "application/json");
 
             var response = client.Execute<List<Result>>(request);
 
