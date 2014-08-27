@@ -223,7 +223,7 @@ namespace Clicksign
             var client = new RestClient(Host);
             var request = new RestRequest(string.Format("documents/{0}/hooks", document.Key), Method.POST);
 
-            request.AddHeader("Accept", "application/vnd.clicksign.v1;application/json");
+            request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
             request.AddParameter("access_token", Token);
             request.AddParameter("url", url);
