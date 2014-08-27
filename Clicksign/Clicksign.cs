@@ -88,7 +88,7 @@ namespace Clicksign
                 throw new FileNotFoundException("File name is null or empty.");
 
             var client = new RestClient(Host);
-            var request = new RestRequest("documents", Method.POST);
+            var request = new RestRequest("v1/documents", Method.POST);
 
             request.AddParameter("access_token", Token);
             request.AddHeader("Content-Type", "multipart/mixed; boundary=frontier");
@@ -160,7 +160,7 @@ namespace Clicksign
                 throw new ArgumentNullException("signatories", "Signatories is empty");
 
             var client = new RestClient(Host);
-            var request = new RestRequest(string.Format("documents/{0}/list", document.Key), Method.POST);
+            var request = new RestRequest(string.Format("v1/documents/{0}/list", document.Key), Method.POST);
 
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
@@ -186,7 +186,7 @@ namespace Clicksign
         public List<Document> List()
         {
             var client = new RestClient(Host);
-            var request = new RestRequest("documents", Method.GET);
+            var request = new RestRequest("v1/documents", Method.GET);
 
             request.AddParameter("access_token", Token);
             request.AddHeader("Accept", "application/json");
@@ -221,7 +221,7 @@ namespace Clicksign
                 throw new ArgumentNullException("url", "Url is null or empty");
 
             var client = new RestClient(Host);
-            var request = new RestRequest(string.Format("documents/{0}/hooks", document.Key), Method.POST);
+            var request = new RestRequest(string.Format("v1/documents/{0}/hooks", document.Key), Method.POST);
 
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
