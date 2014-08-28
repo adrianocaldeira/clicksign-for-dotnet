@@ -121,7 +121,10 @@ Console.Write(clicksign.Document.Key);
 
 ##<a name="release-notes"></a>Release Notes
 
-- [Versão 1.0.0]
+- Versão 1.0.0
 	- Primeira versão lançada no NuGet.
+- Versão 1.0.1
+	- Versão da API no path da rota.
+	- Exclusão da versão da API do Header da chamada.
 
 
