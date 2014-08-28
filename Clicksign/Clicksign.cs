@@ -88,11 +88,11 @@ namespace Clicksign
                 throw new FileNotFoundException("File name is null or empty.");
 
             var client = new RestClient(Host);
-            var request = new RestRequest("documents", Method.POST);
+            var request = new RestRequest("v1/documents", Method.POST);
 
             request.AddParameter("access_token", Token);
             request.AddHeader("Content-Type", "multipart/mixed; boundary=frontier");
-            request.AddHeader("Accept", "application/vnd.clicksign.v1; application/json");
+            request.AddHeader("Accept", "application/json");
             request.AddFile("document[archive][original]", file, fileName);
 
             var response = client.Execute<Result>(request).Data;
@@ -160,9 +160,9 @@ namespace Clicksign
                 throw new ArgumentNullException("signatories", "Signatories is empty");
 
             var client = new RestClient(Host);
-            var request = new RestRequest(string.Format("documents/{0}/list", document.Key), Method.POST);
+            var request = new RestRequest(string.Format("v1/documents/{0}/list", document.Key), Method.POST);
 
-            request.AddHeader("Accept", "application/vnd.clicksign.v1;application/json");
+            request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
             request.AddParameter("access_token", Token);
 
@@ -186,10 +186,10 @@ namespace Clicksign
         public List<Document> List()
         {
             var client = new RestClient(Host);
-            var request = new RestRequest("documents", Method.GET);
+            var request = new RestRequest("v1/documents", Method.GET);
 
             request.AddParameter("access_token", Token);
-            request.AddHeader("Accept", "application/vnd.clicksign.v1; application/json");
+            request.AddHeader("Accept", "application/json");
 
             var response = client.Execute<List<Result>>(request);
 
@@ -221,9 +221,9 @@ namespace Clicksign
                 throw new ArgumentNullException("url", "Url is null or empty");
 
             var client = new RestClient(Host);
-            var request = new RestRequest(string.Format("documents/{0}/hooks", document.Key), Method.POST);
+            var request = new RestRequest(string.Format("v1/documents/{0}/hooks", document.Key), Method.POST);
 
-            request.AddHeader("Accept", "application/vnd.clicksign.v1;application/json");
+            request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
             request.AddParameter("access_token", Token);
             request.AddParameter("url", url);
