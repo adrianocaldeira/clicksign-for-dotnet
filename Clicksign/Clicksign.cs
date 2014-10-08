@@ -170,6 +170,8 @@ namespace Clicksign
             {
                 request.AddParameter("signers[][email]", signatory.Email);
                 request.AddParameter("signers[][act]", signatory.Action.ToString().ToLower());
+                request.AddParameter("skip_email", document.List.SkipEmail);
+                request.AddParameter("message", document.List.Message);
             }
 
             var response = client.Execute<Result>(request);

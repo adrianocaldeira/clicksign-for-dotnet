@@ -34,6 +34,18 @@ namespace Clicksign
         public string User { get; set; }
 
         /// <summary>
+        /// Get or set skip_email
+        /// </summary>
+        [DeserializeAs(Name = "skip_email")]
+        public bool SkipEmail { get; set; }
+
+        /// <summary>
+        /// Get or set skip_email
+        /// </summary>
+        [DeserializeAs(Name = "message")]
+        public string Message { get; set; }
+
+        /// <summary>
         /// Get or set list of <see cref="DocumentSignature"/>
         /// </summary>
         public List<DocumentSignature> Signatures { get; set; }
