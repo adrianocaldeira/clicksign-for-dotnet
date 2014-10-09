@@ -165,13 +165,13 @@ namespace Clicksign
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
             request.AddParameter("access_token", Token);
+            request.AddParameter("skip_email", document.List.SkipEmail.ToString().ToLower());
+            request.AddParameter("message", document.List.Message);
 
             foreach (var signatory in signatories)
             {
                 request.AddParameter("signers[][email]", signatory.Email);
                 request.AddParameter("signers[][act]", signatory.Action.ToString().ToLower());
-                request.AddParameter("skip_email", document.List.SkipEmail);
-                request.AddParameter("message", document.List.Message);
             }
 
             var response = client.Execute<Result>(request);
