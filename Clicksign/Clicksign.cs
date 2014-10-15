@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using log4net;
 using RestSharp;
 
 namespace Clicksign
@@ -19,7 +20,10 @@ namespace Clicksign
         {
             Host = ConfigurationManager.AppSettings["Clicksign-Host"];
             Token = ConfigurationManager.AppSettings["Clicksign-Token"];
+            Log = LogManager.GetLogger("Clicksign");
         }
+
+        private ILog Log { get; set; } 
 
         /// <summary>
         /// Initialize new instance of class <see cref="Clicksign"/>
@@ -95,7 +99,9 @@ namespace Clicksign
             request.AddHeader("Accept", "application/json");
             request.AddFile("document[archive][original]", file, fileName);
 
-            var response = client.Execute<Result>(request).Data;
+            Log.Debug(string.Format("Send file {0} with token {1}", fileName, Token));
+
+            var response = Execute<Result>(client, request).Data;
 
             Document = response.Document;
 
@@ -168,13 +174,20 @@ namespace Clicksign
             request.AddParameter("skip_email", document.List.SkipEmail.ToString().ToLower());
             request.AddParameter("message", document.List.Message);
 
+            Log.Debug(string.Format("Send list of Signatories with Token {0}, SkipEmail {1}, Message {2} and {3} signatories",
+                Token, document.List.SkipEmail, document.List.Message, signatories.Count));
+
             foreach (var signatory in signatories)
             {
-                request.AddParameter("signers[][email]", signatory.Email);
-                request.AddParameter("signers[][act]", signatory.Action.ToString().ToLower());
-            }
+                var action = signatory.Action.ToString().ToLower();
 
-            var response = client.Execute<Result>(request);
+                request.AddParameter("signers[][email]", signatory.Email);
+                request.AddParameter("signers[][act]", action);
+
+                Log.Debug(string.Format("Send Signatory Email {0} and Action {1} to list", signatory.Email, action));
+            }
+            
+            var response = Execute<Result>(client, request);
 
             Document = response.Data.Document;
 
@@ -193,9 +206,14 @@ namespace Clicksign
             request.AddParameter("access_token", Token);
             request.AddHeader("Accept", "application/json");
 
-            var response = client.Execute<List<Result>>(request);
+            Log.Debug(string.Format("Get list of document with Token {0}", Token));
+            
+            var response = Execute<List<Result>>(client, request);
+            var documents = response.Data.Select(result => result.Document).ToList();
 
-            return response.Data.Select(result => result.Document).ToList();
+            Log.Debug(string.Format("Get {0} documents of list", documents.Count));
+
+            return documents;
         }
 
         /// <summary>
@@ -230,7 +248,35 @@ namespace Clicksign
             request.AddParameter("access_token", Token);
             request.AddParameter("url", url);
 
-            return client.Execute<HookResult>(request).Data;
+            Log.Debug(string.Format("Create hook of document with Token {0}, Document {1} and Url {2}", Token, document.Key, url));
+            
+            return Execute<HookResult>(client, request).Data;
+        }
+
+        private IRestResponse<T> Execute<T>(RestClient client, IRestRequest request) where T : new()
+        {
+            try
+            {
+                var response = client.Execute<T>(request);
+
+                Log.Debug(string.Format("Status Code {0}, Status Description {1} and Content {2}",
+                    response.StatusCode, 
+                    (string.IsNullOrEmpty(response.StatusDescription) ? "is empty" : response.StatusDescription),
+                    (string.IsNullOrEmpty(response.Content) ? "is empty" : response.Content)));
+                
+                if (response.ErrorException != null)
+                    throw response.ErrorException;
+
+                if (!string.IsNullOrEmpty(response.ErrorMessage))
+                    throw new Exception(response.ErrorMessage);
+                
+                return response;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Erro of execute ClickSign API", ex);
+                throw;
+            }
         }
     }
 }
