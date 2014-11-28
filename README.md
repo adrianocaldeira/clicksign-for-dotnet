@@ -146,5 +146,6 @@ Console.Write(clicksign.Document.Key);
 	- Implementação do método Get referente a funcionalidade de visualizar documento, conforme documentação http://clicksign.github.io/rest-api/#visualizacao-de-documento.
 	- Atualização de dependências.
 	- Projeto para testar os métodos da API.
-
+- Versão 1.0.5
+	- Atualização de dependências.
 
