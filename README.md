@@ -141,6 +141,8 @@ Console.Write(clicksign.Document.Key);
 - Versão 1.0.2
 	- Correção de bugs.
 - Versão 1.0.3
+	- Implementação de log4net.
+- Versão 1.0.4
 	- Implementação do método Get referente a funcionalidade de visualizar documento, conforme documentação http://clicksign.github.io/rest-api/#visualizacao-de-documento.
 	- Atualização de dependências.
 	- Projeto para testar os métodos da API.
