@@ -14,6 +14,7 @@ Atualmente a biblioteca <a href="https://github.com/adrianocaldeira/clicksign-fo
 - [Configuração](#configuracao)
 - [Utilização](#utilizacao)
 	- [Recuperando lista de documentos](#utilizacao-lista-documento)
+	- [Recuperando documento](#utilizacao-recupera-documento)
 	- [Enviando um arquivo](#utilizacao-enviando-arquivo)
 	- [Criando uma lista de assinatura](#utilizacao-criando-lista)
 	- [Criando um Hook](#utilizacao-criando-hook)
@@ -48,6 +49,17 @@ var clicksign = new Clicksign();
 var list = clicksign.List();
 
 Console.Write(list.Count);
+```
+
+####<a name="utilizacao-recupera-documento"></a>Recuperando documento
+
+Conforme a documentação http://clicksign.github.io/rest-api/#visualizacao-de-documento, é possível obter um documento da conta através da chave do documento, além de informações extras pertinentes ao andamento da lista de assinatura. 
+
+```csharp
+var clicksign = new Clicksign();
+var document = clicksign.Get("1123-4567-89ab-cdef");
+
+Console.Write(document.Key);
 ```
 
 ####<a name="utilizacao-enviando-arquivo"></a>Enviando um arquivo
@@ -126,5 +138,11 @@ Console.Write(clicksign.Document.Key);
 - Versão 1.0.1
 	- Versão da API no path da rota.
 	- Exclusão da versão da API do Header da chamada.
+- Versão 1.0.2
+	- Correção de bugs.
+- Versão 1.0.3
+	- Implementação do método Get referente a funcionalidade de visualizar documento, conforme documentação http://clicksign.github.io/rest-api/#visualizacao-de-documento.
+	- Atualização de dependências.
+	- Projeto para testar os métodos da API.
 
 
