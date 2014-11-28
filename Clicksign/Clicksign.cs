@@ -253,6 +253,28 @@ namespace Clicksign
             return Execute<HookResult>(client, request).Data;
         }
 
+        /// <summary>
+        /// Get <see cref="Document"/>, more information visit <see cref="http://clicksign.github.io/rest-api/#visualizacao-de-documento">Clicksign Rest API</see>
+        /// </summary>
+        /// <returns><see cref="Document"/></returns>
+        public Document Get(string key)
+        {
+            var client = new RestClient(Host);
+            var request = new RestRequest(string.Format("v1/documents/{0}", key), Method.GET);
+
+            request.AddParameter("access_token", Token);
+            request.AddHeader("Accept", "application/json");
+
+            Log.Debug(string.Format("Get document with Token {0}", Token));
+
+            var response = Execute<Result>(client, request);
+            var document = response.Data.Document;
+
+            if(document == null) Log.Debug("Document not found with key " + key);
+
+            return document;
+        }
+
         private IRestResponse<T> Execute<T>(RestClient client, IRestRequest request) where T : new()
         {
             try
