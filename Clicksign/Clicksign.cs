@@ -18,8 +18,8 @@ namespace Clicksign
         /// </summary>
         public Clicksign()
         {
-            Host = ConfigurationManager.AppSettings["Clicksign-Host"];
-            Token = ConfigurationManager.AppSettings["Clicksign-Token"];
+            Host = String.IsNullOrEmpty(Host) ? ConfigurationManager.AppSettings["Clicksign-Host"] : Host;
+            Token = String.IsNullOrEmpty(Token) ? ConfigurationManager.AppSettings["Clicksign-Token"] : Token;
             Log = LogManager.GetLogger("Clicksign");
         }
 
